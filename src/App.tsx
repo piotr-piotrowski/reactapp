@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useMemo } from "react";
+import { FunctionComponent, useMemo } from "react";
 import { Product } from "./data/entities";
 import { ProductList } from "./productList";
 import {

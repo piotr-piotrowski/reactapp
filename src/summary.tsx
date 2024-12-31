@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import { FunctionComponent } from "react";
 import { NavLink, useParams } from "react-router-dom";
 
 export const Summary: FunctionComponent = () => {

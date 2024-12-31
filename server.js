@@ -5,7 +5,7 @@ const history = require("connect-history-api-fallback");
 const app = express();
 
 const router = jsonServer.router("data.prod.json");
-app.use(jsonServer.bodyParser);
+app.use(jsonServer.bodyParser)
 app.use("/api", (req, resp, next) => router(req, resp, next));
 
 app.use(history());

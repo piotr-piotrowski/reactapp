@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState } from "react";
 import { Header } from "./header";
 import { ProductItem } from "./productItem";
 import { CategoryList } from "./categoryList";
