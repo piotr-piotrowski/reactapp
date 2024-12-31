@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { FunctionComponent, useState } from "react";
+import {
+  Product,
+  ProductSelection,
+  ProductSelectionMutations,
+} from "./data/entities";
+import { ProductList } from "./productList";
 
-function App() {
-  const [count, setCount] = useState(0)
+let testData: Product[] = [1, 2, 3, 4, 5].map((num) => ({
+  id: num,
+  name: `Prod${num}`,
+  category: `Cat${num % 2}`,
+  description: `Product ${num}`,
+  price: 100,
+}));
 
+export const App: FunctionComponent = () => {
+  const [selections, setSelections] = useState(Array<ProductSelection>());
+  const addToOrder = (product: Product, quantity: number) => {
+    setSelections((curr) => {
+      ProductSelectionMutations.addProduct(curr, product, quantity);
+      return [...curr];
+    });
+  };
+  const categories = [...new Set(testData.map((p) => p.category))];
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
-
-export default App
+    <div className="App">
+      <ProductList
+        products={testData}
+        categories={categories}
+        selections={selections}
+        addToOrder={addToOrder}
+      />
+    </div>
+  );
+};
+export default App;
